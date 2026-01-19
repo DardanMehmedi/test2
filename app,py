@@ -1,0 +1,16 @@
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return '<h1>CryptoVault Analytics Ready</h1><p>Run pipeline via SSH or cron.</p>'
+
+@app.route('/run-pipeline')
+def trigger_pipeline():
+    # Import and run your script (non-blocking for demo)
+    from your_script_name import run_pipeline  # Replace with actual filename
+    run_pipeline(full_run=True)
+    return 'Pipeline triggered!'
+
+if __name__ == '__main__':
+    app.run()
